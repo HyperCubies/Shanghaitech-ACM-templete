@@ -55,6 +55,19 @@ ll BIT::lower_bound(ll target) {
 	return sum;
 }
 
+ll BIT::upper_bound(ll target) {
+	ll sum = 0;
+	int i = 0;
+	for (int j = 1 << lgn; j > 0; j >>= 1)
+	{
+		if (sum + b[i] <= target) {
+			sum += b[i];
+			i += j;
+		}
+	}
+	return sum;
+}
+
 
 void test() {
 	int a = 2;
