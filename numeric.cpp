@@ -38,7 +38,7 @@ vpii prime_factor(vi pl, int n) {
 		if (fp.se) fl.pb(fp);
 		if (n < p) break;
 	}
-	if (n > 1) vpii.pb({n, 1});
+	if (n > 1) fl.pb({n, 1});
 	return fl;
 }
 
