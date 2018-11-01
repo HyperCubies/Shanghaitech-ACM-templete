@@ -43,7 +43,27 @@ struct point3 {
 	static point3 cross(point3 &a, point3 &b) { return a.cross(b); }
 };
 
-
+struct p2comp
+{
+	point2 c;
+	point2 r;
+	p2comp(point2 _c, point2 _r = point2(1, 0)):c(_c),r(_r) {}
+	bool operator() (const point2 &a, const point2 &b) {
+		db ra = r.cross(a - c), rb = r.cross(b - c);
+		db ab = (a - c).cross(b - c);
+		if (ab == 0) return false;
+		if (ra * rb < 0) {
+			return rb < 0;
+		} else if (ra * rb > 0) {
+			return ab > 0;
+		}
+		if ((ra == 0) && (r.dot(a - c) > 0)) return true;
+		if ((rb == 0) && (r.dot(b - c) > 0)) return false;
+		if (ra == 0) return rb < 0;
+		if (rb == 0) return ra > 0;
+		return false;
+	}
+};
 
 int main() {
 	return 0;
